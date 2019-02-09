@@ -1,0 +1,8 @@
+version: "3.7"
+services:
+  monit:
+    env_file: [docker.env]
+    image: kiorky/monitelec
+    build:  {context: "."}
+    volumes:
+    - ./:/data

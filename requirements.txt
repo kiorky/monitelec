@@ -1,0 +1,1 @@
+-e git+https://github.com/GadgetReactor/pyHS100#egg=pyHS100
