@@ -4,6 +4,7 @@ import datetime
 import os
 import time
 import csv
+import pyHS100
 from pyHS100 import SmartPlug
 
 
@@ -42,8 +43,11 @@ if not content:
 print('Hit control C to stop scanning')
 while True:
     now = datetime.datetime.now()
-    sd = SmartPlug(host)
-    state = sd.get_emeter_realtime()
+    try:
+        sd = SmartPlug(host)
+        state = sd.get_emeter_realtime()
+    except pyHS100.smartdevice.SmartDeviceException:
+        continue
     state["date"] = now.strftime('%Y-%m-%d %H:%M:%S')
     write(state, mode='a')
     time.sleep(1)
